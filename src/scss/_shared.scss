@@ -1,0 +1,15 @@
+input, textarea, .message .body .txt{
+  color:#545657;
+  font-size:16px;
+  font-weight:$semibold;
+  font-style: italic;
+  line-height: 1.5;
+  padding: 6px 10px;
+  &::placeholder{color:#BBBBBB;}
+  &::selection{
+    background: #9EE2FC;
+    color: #000000;
+  }
+}
+.pad-left{padding-left:65px;}
+.push-left{margin-left:65px;}
