@@ -1,3 +1,6 @@
 # Usage
 
-See `./stage/stage.js`
+See :
+
+- `./stage/stage.js`
+- `./stage/shim/shim.js`
