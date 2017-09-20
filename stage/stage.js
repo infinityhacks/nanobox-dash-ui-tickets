@@ -8,13 +8,16 @@ import Vue from 'vue'
 Vue.config.productionTip = false;
 
 let callbacks = {
-  getTicket(id,cb) {
+  // Get ticket details from groove and call callback to display:
+  getTicket(id, cb) {
     cb( shim.activeTicket )
   },
+  // Add a comment to a ticket
   addCommentToTicket(id, message, timeStamp, cb) {
     shim.addCommentToTicket(message, timeStamp)
     cb({})
   },
+  // Create a new ticket
   createTicket(info, cb) {
     console.log( `Creating a ticket with this info` )
     console.log( info );
