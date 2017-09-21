@@ -20,6 +20,6 @@ export default {
 
 <style lang="scss" >
   .tickets{
-    @import "./scss/shared";
+    // @import "./scss/shared";
   }
 </style>

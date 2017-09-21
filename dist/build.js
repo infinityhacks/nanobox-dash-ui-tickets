@@ -80,9 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  tickets: __webpack_require__(4)
-};
+module.exports = __webpack_require__(4);
 
 /***/ }),
 /* 1 */
@@ -106,7 +104,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, ".tickets .message .body .txt,.tickets input,.tickets textarea{color:#545657;font-size:16px;font-weight:600;font-style:italic;line-height:1.5;padding:6px 10px}.tickets .message .body .txt::placeholder,.tickets input::placeholder,.tickets textarea::placeholder{color:#bbb}.tickets .message .body .txt::selection,.tickets input::selection,.tickets textarea::selection{background:#9ee2fc;color:#000}.tickets .pad-left{padding-left:65px}.tickets .push-left{margin-left:65px}", "", {"version":3,"sources":["/./src/base.vue"],"names":[],"mappings":"AACA,8DACE,cAAe,AACf,eAAgB,AAChB,gBAAiB,AACjB,kBAAmB,AACnB,gBAAiB,AACjB,gBAAkB,CACnB,AACD,qGACI,UAAe,CAClB,AACD,+FACI,mBAAoB,AACpB,UAAe,CAClB,AACD,mBACE,iBAAmB,CACpB,AACD,oBACE,gBAAkB,CACnB","file":"base.vue","sourcesContent":["\n.tickets input, .tickets textarea, .tickets .message .body .txt {\n  color: #545657;\n  font-size: 16px;\n  font-weight: 600;\n  font-style: italic;\n  line-height: 1.5;\n  padding: 6px 10px;\n}\n.tickets input::placeholder, .tickets textarea::placeholder, .tickets .message .body .txt::placeholder {\n    color: #BBBBBB;\n}\n.tickets input::selection, .tickets textarea::selection, .tickets .message .body .txt::selection {\n    background: #9EE2FC;\n    color: #000000;\n}\n.tickets .pad-left {\n  padding-left: 65px;\n}\n.tickets .push-left {\n  margin-left: 65px;\n}\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"base.vue","sourceRoot":"webpack://"}]);
 
 // exports
 
