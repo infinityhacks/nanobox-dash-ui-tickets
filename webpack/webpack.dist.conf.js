@@ -15,6 +15,7 @@ module.exports        = merge(baseWebpackConfig, {
   externals:{
     // Add any libraries you want odin to manage here:
     'javascript-time-ago' : 'javascript-time-ago',
+    timeAgo : 'javascript-time-ago',
     vue : 'vue'
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
