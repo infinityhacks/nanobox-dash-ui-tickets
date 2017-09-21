@@ -14,7 +14,8 @@ module.exports        = merge(baseWebpackConfig, {
   },
   externals:{
     // Add any libraries you want odin to manage here:
-    // lodash : 'lodash',
+    'javascript-time-ago' : 'javascript-time-ago',
+    vue : 'vue'
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
@@ -29,11 +30,11 @@ module.exports        = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     // Bump the patch version..
     new Bump([
       '../package.json',
