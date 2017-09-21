@@ -1,2 +1,3 @@
-// module.exports = require('./base')
-module.exports = {}
+module.exports = {
+  tickets : require('./base')
+}
