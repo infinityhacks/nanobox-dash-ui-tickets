@@ -4,6 +4,7 @@
   "description": "Nanobox UI component for creating tickets",
   "author": "Mark Parson <mark@nanobox.io>",
   "private": true,
+  "main": "dist/build.js",
   "scripts": {
     "dev": "node webpack/dev-server.js",
     "build": "node webpack/build.js"
