@@ -563,13 +563,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.error = null;
     },
     closeTicket: function closeTicket(id) {
-      console.log('close ticket : ' + id);
-    },
-    addCommentToTicket: function addCommentToTicket(id, comment) {
       var _this2 = this;
 
-      this.callbacks.addCommentToTicket(id, comment, new Date().getTime(), function (results) {
-        if (results.error) error = results.error;else _this2.$refs.ticketView.clearInput();
+      this.callbacks.closeTicket(id, function (results) {
+        if (results.error) error = results.error;else _this2.state = 'list';
+      });
+    },
+    addCommentToTicket: function addCommentToTicket(id, comment) {
+      var _this3 = this;
+
+      this.callbacks.addCommentToTicket(id, comment, function (results) {
+        if (results.error) error = results.error;else _this3.$refs.ticketView.clearInput();
       });
     }
   }

@@ -13,8 +13,8 @@ let callbacks = {
     cb( shim.activeTicket )
   },
   // Add a comment to a ticket
-  addCommentToTicket(id, message, timeStamp, cb) {
-    shim.addCommentToTicket(message, timeStamp)
+  addCommentToTicket(id, message, cb) {
+    shim.addCommentToTicket(message)
     cb({})
   },
   // Create a new ticket
@@ -22,6 +22,11 @@ let callbacks = {
     console.log( `Creating a ticket with this info` )
     console.log( info );
     cb({error:"hmm, some error"})
+  },
+  // Close Ticket
+  closeTicket(id, cb) {
+    console.log( `Closing ticket with the id : ${id}` )
+    cb({})
   }
 }
 

@@ -97,13 +97,13 @@ export default class Shim {
   }
 
   // Callback that simulates adding the latest comment to the ticket
-  addCommentToTicket(message, timestamp) {
+  addCommentToTicket(message) {
     this.activeTicket.comments.push( {
         text    : message,
         user    : 'tolmark12',
         email   : this.data.userEmail,
         isAdmin : true,
-        time    : timestamp
+        time    : new Date().getTime()
     } )
   }
 }

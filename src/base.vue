@@ -29,10 +29,15 @@ export default {
     onError(error) {this.error=error},
     clearError()   {this.error=null},
     closeTicket(id) {
-      console.log( `close ticket : ${id}` )
+      this.callbacks.closeTicket(id, (results)=>{
+        if(results.error)
+          error = results.error
+        else
+          this.state = 'list'
+      })
     },
     addCommentToTicket(id, comment) {
-      this.callbacks.addCommentToTicket(id, comment, new Date().getTime(), (results)=>{
+      this.callbacks.addCommentToTicket(id, comment, (results)=>{
         if(results.error)
           error = results.error
         else
