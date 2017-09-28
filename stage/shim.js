@@ -3,9 +3,10 @@ export default class Shim {
   constructor() {
     this.count = 1
     this.data  = {
-      userEmail : 'contact@parslee.com',
-      tickets   : [],//this.getTicketList(),
-      apps      : this.getAppList()
+      userEmail    : 'contact@parslee.com',
+      tickets      : this.getTicketList(),
+      activeTicket : null,
+      apps         : this.getAppList()
     }
     this.activeTicket = this.getFullTicket()
   }

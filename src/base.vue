@@ -11,14 +11,10 @@ export default {
   props:['model', 'callbacks'],
   components:{ticketList, ticketView, ticketNew, errors, noTickets},
   data() {
-    let obj = {
+    return {
       state        : "list",
-      activeTicket : "",
       error        : null
     }
-    if(this.model.tickets.length == 0)
-      obj.state = 'no-tickets'
-    return obj
   },
   watch:{
     state() {this.clearError()} // Anytime the state changes, clear any errors
@@ -26,8 +22,9 @@ export default {
   methods:{
     viewTicket(id) {
       this.state = "ticket.view"
-      this.callbacks.getTicket(id, (ticket)=>{
-        this.activeTicket = ticket
+      this.callbacks.getTicket(id, (results)=>{
+        if(results.error)
+          error = results.error
       })
     },
     onError(error) {this.error=error},
@@ -49,8 +46,29 @@ export default {
       })
     },
     setListState() {
-      this.state = (this.model.tickets.length < 1)? 'no-tickets' : 'list';
+      if(this.model.tickets.length < 1)
+        this.state = 'no-tickets'
+      else if(this.model.activeTicket != null)
+        this.state = 'ticket.view'
+      else
+        this.state = 'list';
+    },
+    exitTicket(){
+      this.callbacks.exitTicket()
     }
+  },
+  computed:{
+    activeTicket(){
+      return this.model.activeTicket
+    }
+  },
+  watch:{
+    activeTicket(){
+      this.setListState()
+    }
+  },
+  mounted(){
+    this.setListState()
   },
 }
 </script>
@@ -64,7 +82,7 @@ export default {
     errors(:errors="error")
     no-tickets( v-if="state == 'no-tickets'"  @newTicket="state='ticket.new'" )
     ticket-list(v-if="state == 'list'" :tickets="model.tickets" @viewTicket="viewTicket" @newTicket="state='ticket.new'" )
-    ticket-view(v-if="state == 'ticket.view'" :model="model" :ticket="activeTicket" @exit="setListState" @onError="onError" @ticket-close="closeTicket" @ticket-comment="addCommentToTicket" ref="ticketView")
+    ticket-view(v-if="state == 'ticket.view'" :model="model" :ticket="activeTicket" @exit="exitTicket" @onError="onError" @ticket-close="closeTicket" @ticket-comment="addCommentToTicket" ref="ticketView")
     ticket-new( v-if="state == 'ticket.new'" :model="model" @exit="setListState" :saveCb="callbacks.createTicket" @error="onError" )
 </template>
 

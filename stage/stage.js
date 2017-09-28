@@ -1,7 +1,7 @@
 require('nanobox-core-styles/scss/_base.scss')
 require("script-loader!../node_modules/shadow-icons/rel/app.js")
 
-import Shim from './shim/shim'
+import Shim from './shim'
 import tickets from '../src/main.js'
 import Vue from 'vue'
 
@@ -10,7 +10,8 @@ Vue.config.productionTip = false;
 let callbacks = {
   // Get ticket details from groove and call callback to display:
   getTicket(id, cb) {
-    cb( shim.activeTicket )
+    shim.data.activeTicket = shim.activeTicket
+    cb({})
   },
   // Add a comment to a ticket
   addCommentToTicket(id, message, cb) {
@@ -22,6 +23,10 @@ let callbacks = {
     console.log( `Creating a ticket with this info` )
     console.log( info );
     cb({error:"hmm, some error"})
+  },
+  // Stop viewing a ticket
+  exitTicket() {
+    shim.data.activeTicket = null
   },
   // Close Ticket
   closeTicket(id, cb) {
