@@ -10,8 +10,11 @@ Vue.config.productionTip = false;
 let callbacks = {
   // Get ticket details from groove and call callback to display:
   getTicket(id, cb) {
-    shim.data.activeTicket = shim.activeTicket
-    cb({})
+    // Simulate request delay..
+    setTimeout( ()=> {
+      shim.data.activeTicket = shim.activeTicket
+      cb({})
+    }, 1200*Math.random() );
   },
   // Add a comment to a ticket
   addCommentToTicket(id, message, cb) {

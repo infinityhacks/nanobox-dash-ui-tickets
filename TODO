@@ -1,5 +1,7 @@
 ☐ Add loading indicators when requesting data
-☐ Create initial cool looking tickets state if there are no tickets
+✔ Create initial cool looking tickets state if there are no tickets     done(√)
+✔ Change way current ticket is handled     done(√)
+✔ Allow initial ticket selected     done(√)
 ☐ Handle closed open status
 ☐ Unread messages?
 ☐ Total messages?

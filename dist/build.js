@@ -618,7 +618,8 @@ var _name$props$component;
   data: function data() {
     return {
       state: "list",
-      error: null
+      error: null,
+      activeTicketId: null
     };
   },
 
@@ -630,9 +631,11 @@ var _name$props$component;
   },
   methods: {
     viewTicket: function viewTicket(id) {
-      this.state = "ticket.view";
+      var _this = this;
+
+      this.activeTicketId = id;
       this.callbacks.getTicket(id, function (results) {
-        if (results.error) error = results.error;
+        if (results.error != null) _this.error = results.error;
       });
     },
     onError: function onError(error) {
@@ -642,17 +645,17 @@ var _name$props$component;
       this.error = null;
     },
     closeTicket: function closeTicket(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.callbacks.closeTicket(id, function (results) {
-        if (results.error) error = results.error;else _this.state = 'list';
+        if (results.error) _this2.error = results.error;else _this2.state = 'list';
       });
     },
     addCommentToTicket: function addCommentToTicket(id, comment) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.callbacks.addCommentToTicket(id, comment, function (results) {
-        if (results.error) error = results.error;else _this2.$refs.ticketView.clearInput();
+        if (results.error) _this3.error = results.error;else _this3.$refs.ticketView.clearInput();
       });
     },
     setListState: function setListState() {
@@ -668,7 +671,8 @@ var _name$props$component;
     }
   }
 }, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_name$props$component, 'watch', {
-  activeTicket: function activeTicket() {
+  activeTicket: function activeTicket(val) {
+    if (val == null) this.activeTicketId = null;
     this.setListState();
   }
 }), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_name$props$component, 'mounted', function mounted() {
@@ -740,7 +744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ticket-list',
-  props: ['tickets']
+  props: ['tickets', 'active-ticket-id']
 });
 
 /***/ }),
@@ -1374,7 +1378,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\t.st0_j84zoa4r{fill:none;stroke:#11A7ED;stroke-width:2.0439;stroke-linejoin:bevel;stroke-miterlimit:10;}\t.st1_j84zoa4r{fill:none;stroke:#11A7ED;stroke-width:2.1562;stroke-miterlimit:10;}\t.st2_j84zoa4r{fill:none;stroke:#11A7ED;stroke-width:2.1562;stroke-linejoin:bevel;stroke-miterlimit:10;}", ""]);
+exports.push([module.i, "\t.st0_j851i9b5{fill:none;stroke:#11A7ED;stroke-width:2.0439;stroke-linejoin:bevel;stroke-miterlimit:10;}\t.st1_j851i9b5{fill:none;stroke:#11A7ED;stroke-width:2.1562;stroke-miterlimit:10;}\t.st2_j851i9b5{fill:none;stroke:#11A7ED;stroke-width:2.1562;stroke-linejoin:bevel;stroke-miterlimit:10;}", ""]);
 
 // exports
 
@@ -1416,7 +1420,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"ticket-list.vue","sourceRoot":"webpack://"}]);
+exports.push([module.i, ".ticket-list .lifecycle[data-v-59914264]:before{margin-left:-15px;border:1px solid rgba(18,170,228,.2);border-left:1px solid #12aae4}", "", {"version":3,"sources":["/./src/ticket-list.vue"],"names":[],"mappings":"AACA,gDACE,kBAAmB,AACnB,qCAA0C,AAC1C,6BAA+B,CAChC","file":"ticket-list.vue","sourcesContent":["\n.ticket-list .lifecycle[data-v-59914264]:before {\n  margin-left: -15px;\n  border: 1px solid rgba(18, 170, 228, 0.2);\n  border-left: 1px solid #12AAE4;\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -1560,7 +1564,7 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
-window.pxSvgIconString = window.pxSvgIconString || ''; window.pxSvgIconString+='<g id="big-tickets-icon" data-size="82x82" class="tickets-svg-svg ">	<circle class="st0_j84zoa4r" cx="40.909" cy="40.909" r="39.887"/><line class="st1_j84zoa4r" x1="42.745" y1="35.421" x2="39.132" y2="35.421"/><line class="st1_j84zoa4r" x1="31.524" y1="11.836" x2="41.414" y2="21.726"/><line class="st1_j84zoa4r" x1="35.328" y1="8.983" x2="48.071" y2="21.726"/><line class="st1_j84zoa4r" x1="40.273" y1="7.271" x2="54.918" y2="21.726"/><line class="st1_j84zoa4r" x1="54.918" y1="15.069" x2="48.452" y2="8.793"/><polyline class="st1_j84zoa4r" points="35.898,40.746 37.61,41.317 44.077,41.317 45.789,40.746 	"/><line class="st1_j84zoa4r" x1="52.914" y1="24.996" x2="53.207" y2="20.205"/><polyline class="st1_j84zoa4r" points="29.465,34.05 30.192,45.121 40.843,49.306 51.685,45.121 52.361,34.054 	"/><polyline class="st1_j84zoa4r" points="34.377,14.689 28.48,19.063 28.847,24.641 	"/><line class="st1_j84zoa4r" x1="30.382" y1="13.167" x2="27.339" y2="15.45"/><path class="st1_j84zoa4r" d="M43.696,27.432"/><path class="st1_j84zoa4r" d="M44.838,32.948"/><line class="st1_j84zoa4r" x1="36.659" y1="28.193" x2="45.028" y2="28.193"/><polyline class="st1_j84zoa4r" points="50.544,24.579 55.489,24.579 55.489,29.515 	"/><polyline class="st1_j84zoa4r" points="31.714,24.579 26.573,24.579 26.573,29.486 	"/><path class="st1_j84zoa4r" d="M36.659,56.343"/><polyline class="st2_j84zoa4r" points="50.544,45.502 42.745,57.484 51.685,53.68 55.679,60.908 53.207,46.453 51.875,41.127 	"/><polyline class="st2_j84zoa4r" points="31.333,45.502 39.132,57.484 30.002,53.68 26.008,60.908 28.48,46.453 29.812,41.127 	"/><polyline class="st2_j84zoa4r" points="42.745,57.484 40.843,64.141 39.132,57.484 	"/><polyline class="st2_j84zoa4r" points="27.339,51.017 6.95,56.621 5.558,59.477 	"/><polyline class="st2_j84zoa4r" points="54.348,51.017 74.924,56.621 76.48,59.156 	"/><polyline class="st2_j84zoa4r" points="28.48,57.484 40.843,67.375 53.777,57.484 	"/><circle class="st1_j84zoa4r" cx="31.524" cy="29.525" r="4.945"/><circle class="st1_j84zoa4r" cx="50.544" cy="29.525" r="4.945"/></g>';window.pxSvgIconString = window.pxSvgIconString || ''; window.pxSvgIconString+='';
+window.pxSvgIconString = window.pxSvgIconString || ''; window.pxSvgIconString+='<g id="big-tickets-icon" data-size="82x82" class="tickets-svg-svg ">	<circle class="st0_j851i9b5" cx="40.909" cy="40.909" r="39.887"/><line class="st1_j851i9b5" x1="42.745" y1="35.421" x2="39.132" y2="35.421"/><line class="st1_j851i9b5" x1="31.524" y1="11.836" x2="41.414" y2="21.726"/><line class="st1_j851i9b5" x1="35.328" y1="8.983" x2="48.071" y2="21.726"/><line class="st1_j851i9b5" x1="40.273" y1="7.271" x2="54.918" y2="21.726"/><line class="st1_j851i9b5" x1="54.918" y1="15.069" x2="48.452" y2="8.793"/><polyline class="st1_j851i9b5" points="35.898,40.746 37.61,41.317 44.077,41.317 45.789,40.746 	"/><line class="st1_j851i9b5" x1="52.914" y1="24.996" x2="53.207" y2="20.205"/><polyline class="st1_j851i9b5" points="29.465,34.05 30.192,45.121 40.843,49.306 51.685,45.121 52.361,34.054 	"/><polyline class="st1_j851i9b5" points="34.377,14.689 28.48,19.063 28.847,24.641 	"/><line class="st1_j851i9b5" x1="30.382" y1="13.167" x2="27.339" y2="15.45"/><path class="st1_j851i9b5" d="M43.696,27.432"/><path class="st1_j851i9b5" d="M44.838,32.948"/><line class="st1_j851i9b5" x1="36.659" y1="28.193" x2="45.028" y2="28.193"/><polyline class="st1_j851i9b5" points="50.544,24.579 55.489,24.579 55.489,29.515 	"/><polyline class="st1_j851i9b5" points="31.714,24.579 26.573,24.579 26.573,29.486 	"/><path class="st1_j851i9b5" d="M36.659,56.343"/><polyline class="st2_j851i9b5" points="50.544,45.502 42.745,57.484 51.685,53.68 55.679,60.908 53.207,46.453 51.875,41.127 	"/><polyline class="st2_j851i9b5" points="31.333,45.502 39.132,57.484 30.002,53.68 26.008,60.908 28.48,46.453 29.812,41.127 	"/><polyline class="st2_j851i9b5" points="42.745,57.484 40.843,64.141 39.132,57.484 	"/><polyline class="st2_j851i9b5" points="27.339,51.017 6.95,56.621 5.558,59.477 	"/><polyline class="st2_j851i9b5" points="54.348,51.017 74.924,56.621 76.48,59.156 	"/><polyline class="st2_j851i9b5" points="28.48,57.484 40.843,67.375 53.777,57.484 	"/><circle class="st1_j851i9b5" cx="31.524" cy="29.525" r="4.945"/><circle class="st1_j851i9b5" cx="50.544" cy="29.525" r="4.945"/></g>';window.pxSvgIconString = window.pxSvgIconString || ''; window.pxSvgIconString+='';
 
 /***/ }),
 /* 49 */
@@ -2182,7 +2186,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(ticket.title))]), _c('div', {
       staticClass: "details"
     }, [_vm._v("Details")])]), _c('div', {
-      staticClass: "button",
+      staticClass: "button lifecycle",
+      class: {
+        ing: _vm.activeTicketId == ticket.id
+      },
       on: {
         "click": function($event) {
           _vm.$emit('viewTicket', ticket.id)
@@ -2295,6 +2302,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }) : _vm._e(), (_vm.state == 'list') ? _c('ticket-list', {
     attrs: {
+      "activeTicketId": _vm.activeTicketId,
       "tickets": _vm.model.tickets
     },
     on: {
