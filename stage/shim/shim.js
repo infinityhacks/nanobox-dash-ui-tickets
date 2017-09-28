@@ -4,7 +4,7 @@ export default class Shim {
     this.count = 1
     this.data  = {
       userEmail : 'contact@parslee.com',
-      tickets   : this.getTicketList(),
+      tickets   : [],//this.getTicketList(),
       apps      : this.getAppList()
     }
     this.activeTicket = this.getFullTicket()

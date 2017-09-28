@@ -1,0 +1,8 @@
+☐ Add loading indicators when requesting data
+☐ Create initial cool looking tickets state if there are no tickets
+☐ Handle closed open status
+☐ Unread messages?
+☐ Total messages?
+☐ Pagination
+  ☐ Tickets
+  ☐ Messages

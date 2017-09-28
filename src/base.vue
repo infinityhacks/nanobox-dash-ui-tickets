@@ -3,22 +3,26 @@
 import ticketList from './ticket-list'
 import ticketView from './ticket-view'
 import ticketNew  from './ticket-new'
+import noTickets  from './no-tickets'
 import {errors} from 'lexi'
 
 export default {
   name: 'tickets',
   props:['model', 'callbacks'],
+  components:{ticketList, ticketView, ticketNew, errors, noTickets},
   data() {
-    return {
+    let obj = {
       state        : "list",
       activeTicket : "",
       error        : null
-    };
+    }
+    if(this.model.tickets.length == 0)
+      obj.state = 'no-tickets'
+    return obj
   },
   watch:{
     state() {this.clearError()} // Anytime the state changes, clear any errors
   },
-  components:{ticketList, ticketView, ticketNew, errors},
   methods:{
     viewTicket(id) {
       this.state = "ticket.view"
@@ -43,6 +47,9 @@ export default {
         else
           this.$refs.ticketView.clearInput()
       })
+    },
+    setListState() {
+      this.state = (this.model.tickets.length < 1)? 'no-tickets' : 'list';
     }
   },
 }
@@ -55,9 +62,10 @@ export default {
 <template lang="pug">
   .tickets
     errors(:errors="error")
+    no-tickets( v-if="state == 'no-tickets'"  @newTicket="state='ticket.new'" )
     ticket-list(v-if="state == 'list'" :tickets="model.tickets" @viewTicket="viewTicket" @newTicket="state='ticket.new'" )
-    ticket-view(v-if="state == 'ticket.view'" :model="model" :ticket="activeTicket" @exit="state='list'" @onError="onError" @ticket-close="closeTicket" @ticket-comment="addCommentToTicket" ref="ticketView")
-    ticket-new( v-if="state == 'ticket.new'" :model="model" @exit="state='list'" :saveCb="callbacks.createTicket" @error="onError" )
+    ticket-view(v-if="state == 'ticket.view'" :model="model" :ticket="activeTicket" @exit="setListState" @onError="onError" @ticket-close="closeTicket" @ticket-comment="addCommentToTicket" ref="ticketView")
+    ticket-new( v-if="state == 'ticket.new'" :model="model" @exit="setListState" :saveCb="callbacks.createTicket" @error="onError" )
 </template>
 
 <!--
