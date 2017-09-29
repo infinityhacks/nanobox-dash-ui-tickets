@@ -22,6 +22,7 @@ export default {
   },
   methods:{
     viewTicket(id) {
+      this.clearError()
       this.activeTicketId = id
       this.callbacks.getTicket(id, (results)=>{
         if(results.error != null)
@@ -31,6 +32,7 @@ export default {
     onError(error) {this.error=error},
     clearError()   {this.error=null},
     closeTicket(id) {
+      this.clearError()
       this.callbacks.closeTicket(id, (results)=>{
         if(results.error)
           this.error = results.error
@@ -41,6 +43,7 @@ export default {
       })
     },
     addCommentToTicket(id, comment) {
+      this.clearError()
       this.callbacks.addCommentToTicket(id, comment, (results)=>{
         if(results.error)
           this.error = results.error
@@ -48,6 +51,7 @@ export default {
           this.$refs.ticketView.clearInput()
       })
     },
+    // Set the view state (no tickets, list, ticket view)
     setListState() {
       if(this.model.tickets.length < 1)
         this.state = 'no-tickets'

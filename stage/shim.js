@@ -25,21 +25,22 @@ export default class Shim {
 
   getTicketList() {
     return [
-      // this.getAbrevTicket()
+      this.getAbrevTicket()
     ]
   }
 
   getAbrevTicket() {
     return {
-      id:`abcde1234`,
+      id:`01938417`,
       title:'Test Ticket',
-      status:'open'
+      status:'open',
+      summary:'Summary of the ticket '
     }
   }
 
   getFullTicket() {
     return {
-      id       : 'abcd1234',
+      id       : '01938417',
       status   : 'open',
       title    : 'Problem deploying to digital ocean',
       category : 'app',

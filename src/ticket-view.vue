@@ -40,6 +40,7 @@ export default {
 <template lang="pug">
   .ticket-view
     back(@back="$emit('exit')")
+    .id {{ ticket.id }}
     .header.push-left
       .txt {{ ticket.title }}
       .status {{ ticket.status }}
@@ -65,7 +66,10 @@ export default {
 
 <style lang="scss" scoped>
   .ticket-view            {
-    .header               {display: flex; color:#002F3C; font-size:18px; border:solid 3px white; padding:10px 15px; margin-bottom:20px; align-items: baseline; justify-content: space-between; margin-top:40px;
+    .id                   {text-align: right; margin-top:40px; color:#002F3C; font-style:italic; margin-bottom:8px; color:#476873;
+      &:before            {content:"Ticket #"; }
+    }
+    .header               {display: flex; color:#002F3C; font-size:18px; border:solid 3px white; padding:10px 15px; margin-bottom:20px; align-items: baseline; justify-content: space-between;
       .status             {font-size: 12px; color:#11A7ED; text-transform: uppercase; }
     }
     .message              {
