@@ -25,7 +25,7 @@ export default class Shim {
 
   getTicketList() {
     return [
-      this.getAbrevTicket()
+      // this.getAbrevTicket()
     ]
   }
 
@@ -33,7 +33,7 @@ export default class Shim {
     return {
       id:`abcde1234`,
       title:'Test Ticket',
-      status:'closed'
+      status:'open'
     }
   }
 
@@ -108,4 +108,5 @@ export default class Shim {
         time    : new Date().getTime()
     } )
   }
+
 }

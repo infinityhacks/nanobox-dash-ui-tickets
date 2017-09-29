@@ -54,8 +54,8 @@ export default {
     commentor(:email="model.userEmail")
       textarea(v-model="newComment" placeholder="Add a comment")
     .actions.save-section
-      .btn.basic.close.lifecycle(v-if="ticket.status == 'open'" @click="close") Close Ticket
-      .btn.basic.open.lifecycle(v-if="ticket.status == 'closed'" @click="reopen") Re-Open Ticket
+      .btn.basic.close.lifecycle(v-if="ticket.status != 'closed'" @click="close") Close Ticket
+      .btn.basic.open.lifecycle(v-else @click="reopen") Re-Open Ticket
       .btn.basic.lifecycle(@click="comment") Comment
 </template>
 

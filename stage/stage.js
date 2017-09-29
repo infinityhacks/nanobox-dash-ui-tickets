@@ -23,9 +23,9 @@ let callbacks = {
   },
   // Create a new ticket
   createTicket(info, cb) {
-    console.log( `Creating a ticket with this info` )
-    console.log( info );
-    cb({error:"hmm, some error"})
+    shim.addTicketToList()
+    cb({})
+    // cb({error:"hmm, some error"})
   },
   // Stop viewing a ticket
   exitTicket() {
