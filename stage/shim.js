@@ -32,7 +32,8 @@ export default class Shim {
   getAbrevTicket() {
     return {
       id:`abcde1234`,
-      title:'Test Ticket'
+      title:'Test Ticket',
+      status:'closed'
     }
   }
 
