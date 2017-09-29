@@ -23,9 +23,11 @@ let callbacks = {
   },
   // Create a new ticket
   createTicket(info, cb) {
-    shim.addTicketToList()
-    cb({})
-    // cb({error:"hmm, some error"})
+    setTimeout( ()=> {
+      shim.addTicketToList()
+      cb({})
+      // cb({error:"hmm, some error"})
+    }, 1200*Math.random() );
   },
   // Stop viewing a ticket
   exitTicket() {

@@ -61,20 +61,22 @@ export default {
     }
   },
   computed:{
-    activeTicket(){
-      return this.model.activeTicket
-    }
+    activeTicket(){return this.model.activeTicket},
+    ticketsAr(){return this.model.tickets},
   },
   watch:{
+    // When active ticket changes, if it is unset, update the active ticket
+    // id to reflect this new state (thus hiding any loading animations)
     activeTicket(val){
       if(val == null)
         this.activeTicketId = null
       this.setListState()
-    }
+    },
+    // Watch the ticketsAr in case something gets added
+    ticketsAr(){this.setListState()}
   },
-  mounted(){
-    this.setListState()
-  },
+  // On mount, set the initial list state
+  mounted(){ this.setListState() },
 }
 </script>
 
