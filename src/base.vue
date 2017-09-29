@@ -34,8 +34,10 @@ export default {
       this.callbacks.closeTicket(id, (results)=>{
         if(results.error)
           this.error = results.error
-        else
+        else{
+          this.exitTicket()
           this.state = 'list'
+        }
       })
     },
     addCommentToTicket(id, comment) {
