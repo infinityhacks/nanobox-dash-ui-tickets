@@ -18,8 +18,10 @@ let callbacks = {
   },
   // Add a comment to a ticket
   addCommentToTicket(id, message, cb) {
-    shim.addCommentToTicket(message)
-    cb({})
+    setTimeout( ()=> {
+      shim.addCommentToTicket(message)
+      cb({})
+    }, 2000*Math.random() );
   },
   // Create a new ticket
   createTicket(info, cb) {
@@ -27,7 +29,7 @@ let callbacks = {
       shim.addTicketToList()
       cb({})
       // cb({error:"hmm, some error"})
-    }, 1200*Math.random() );
+    }, 1200*Math.random()+1000 );
   },
   // Stop viewing a ticket
   exitTicket() {
@@ -35,13 +37,18 @@ let callbacks = {
   },
   // Close Ticket
   closeTicket(id, cb) {
-    console.log( `Closing ticket with the id : ${id}` )
-    cb({})
+    setTimeout( ()=> {
+      console.log( `Closing ticket with the id : ${id}` )
+      cb({})
+    }, 2000*Math.random() );
   },
   // Reopen a previously closed ticket
   reopenTicket(id, cb) {
-    console.log( `Reopening ticket with the id : ${id}` )
-    cb({})
+    setTimeout( ()=> {
+      console.log( `Reopening ticket with the id : ${id}` )
+      shim.activeTicket.status = 'open'
+      cb({})
+    }, 2000*Math.random() );
   }
 }
 

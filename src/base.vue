@@ -38,14 +38,17 @@ export default {
       })
     },
     addCommentToTicket(id, comment) {
+      console.log( "....." )
       this.clearError()
       this.callbacks.addCommentToTicket(id, comment, (results)=>{
+        console.log( "hmmmm" )
         if( this.handleErrors(results) )
           this.$refs.ticketView.clearInput()
       })
     },
     // Set the view state (no tickets, list, ticket view)
     setListState() {
+      this.clearError()
       if(this.model.tickets.length < 1)
         this.state = 'no-tickets'
       else if(this.model.activeTicket != null)

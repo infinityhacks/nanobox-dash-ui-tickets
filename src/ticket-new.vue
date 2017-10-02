@@ -10,12 +10,15 @@ export default {
       category : "general",
       appId    : "none",
       subject  : "",
-      message  : ""
+      message  : "",
+      creating : false
     }
   },
   methods:{
     onSave() {
+      this.creating = true
       this.saveCb( this.getData(), (results)=>{
+        this.creating = false
         if( results.error != null ){
           this.$emit('error', results.error )
         }else
@@ -52,7 +55,7 @@ export default {
       input(v-model="subject" placeholder="Subject")
     commentor(:email="model.userEmail")
       textarea(v-model="message" placeholder="Ticket Details")
-    save-section(@save="onSave" @cancel="$emit('exit')" save-text="Create Ticket")
+    save-section(@save="onSave" @cancel="$emit('exit')" save-text="Create Ticket" :cycling="creating")
 </template>
 
 <!--

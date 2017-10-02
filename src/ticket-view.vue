@@ -1,27 +1,32 @@
 <script>
-import {back}     from 'lexi'
-import profilePic from './components/profile-pic'
-import commentor  from './components/commentor'
-import timeAgo    from 'javascript-time-ago'
+import {back, lifecycler}     from 'lexi'
+import profilePic             from './components/profile-pic'
+import commentor              from './components/commentor'
+import timeAgo                from 'javascript-time-ago'
 timeAgo.locale(require('javascript-time-ago/locales/en'))
 
 export default {
   name: 'ticket-view',
   props:['ticket', 'model'],
-  components:{back, profilePic, commentor},
+  components:{back, lifecycler, profilePic, commentor},
   data() {return{
-    newComment : ""
+    newComment : "",
+    cycler     : ""
   }},
   methods:{
     comment() {
-      if(this.newComment.length > 0)
+      if(this.newComment.length > 0){
+        this.cycler = 'comment'
         this.$emit('ticket-comment', this.ticket.id, this.newComment)
+      }
     },
     close() {
+      this.cycler = 'close'
       this.comment()
       this.$emit('ticket-close', this.ticket.id)
     },
     reOpen() {
+      this.cycler = 'reopen'
       this.$emit('ticket-reopen', this.ticket.id)
     },
     clearInput(){
@@ -32,7 +37,14 @@ export default {
       let timeAgoEnglish = new timeAgo('en-US')
       return timeAgoEnglish.format( new Date(timeStamp) )
     }
-  }
+  },
+  computed:{
+    comments(){return this.ticket.comments},
+  },
+  // any time the total number of comments changes, reset any cycler
+  watch:{
+    comments(){this.cycler = ""}
+  },
 }
 </script>
 
@@ -53,14 +65,14 @@ export default {
         .time {{ getTime(comment.time) }}
       .body
         profile-pic(:email="comment.email")
-        .txt {{ comment.text }}
+        .txt(v-html="comment.text")
     .rule.push-left
     commentor(:email="model.userEmail" v-if="ticket.status != 'closed'")
       textarea(v-model="newComment" placeholder="Add a comment")
     .actions.save-section
-      .btn.basic.close.lifecycle(v-if="ticket.status != 'closed'" @click="close") Close Ticket
-      .btn.basic.open.lifecycle(v-else @click="reOpen") Re-Open Ticket
-      .btn.basic.lifecycle(v-if="ticket.status != 'closed'" @click="comment") Comment
+      lifecycler.close.lifecycle(v-if="ticket.status != 'closed'" @click="close" :cycle="cycler == 'close'") Close Ticket
+      lifecycler.open.lifecycle(v-else @click="reOpen" :cycle="cycler == 'reopen'") Re-Open Ticket
+      lifecycler(v-if="ticket.status != 'closed'" @click="comment" :cycle="cycler == 'comment'") Comment
 </template>
 
 <!--
@@ -87,7 +99,7 @@ export default {
     }
     .rule                 {border-bottom:solid 1px #CBD5DB; margin:20px 0 20px 65px; }
     .actions              {display: flex; justify-content: flex-end; margin-top:20px;
-      .btn                {margin-left:12px;
+      .button             {margin-left:12px;
         &.close           {background:#51CAFD;
           &:hover         {background: #0297DF}
         }

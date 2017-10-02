@@ -11,7 +11,7 @@ export default {
 -->
 
 <template lang="pug">
-  .ticket-list.blue-list
+  .ticket-list.blue-list(v-bind:class="{'long-list': tickets.length > 3 }")
     .item(v-for="ticket in tickets" v-bind:class="[ticket.status]")
       .info
         .name {{ticket.title}}
@@ -32,7 +32,7 @@ export default {
 -->
 
 <style lang="scss" scoped>
-  .ticket-list        {
+  .ticket-list        {display: flex; flex-direction: column; align-items: flex-start;
     .lifecycle:before {margin-left:-15px; border: 1px solid rgba(#12AAE4, 0.2); border-left:1px solid #12AAE4;
     }
     .item             {position: relative;
@@ -50,6 +50,10 @@ export default {
         .status       {color:white; }
         .id           {position: absolute;right:20px; top:10px; color:#54646E;}
       }
+    }
+    // If there are a lot of tickets, move 'Create a Ticket' above all the tickets
+    &.long-list       {
+      > .btn.basic    {order:-1; margin-bottom:20px; }
     }
   }
 </style>
