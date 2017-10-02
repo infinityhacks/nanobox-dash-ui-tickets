@@ -37,6 +37,11 @@ let callbacks = {
   closeTicket(id, cb) {
     console.log( `Closing ticket with the id : ${id}` )
     cb({})
+  },
+  // Reopen a previously closed ticket
+  reopenTicket(id, cb) {
+    console.log( `Reopening ticket with the id : ${id}` )
+    cb({})
   }
 }
 

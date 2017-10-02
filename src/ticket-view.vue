@@ -21,6 +21,9 @@ export default {
       this.comment()
       this.$emit('ticket-close', this.ticket.id)
     },
+    reOpen() {
+      this.$emit('ticket-reopen', this.ticket.id)
+    },
     clearInput(){
       this.newComment = ""
     },
@@ -56,7 +59,7 @@ export default {
       textarea(v-model="newComment" placeholder="Add a comment")
     .actions.save-section
       .btn.basic.close.lifecycle(v-if="ticket.status != 'closed'" @click="close") Close Ticket
-      .btn.basic.open.lifecycle(v-else @click="reopen") Re-Open Ticket
+      .btn.basic.open.lifecycle(v-else @click="reOpen") Re-Open Ticket
       .btn.basic.lifecycle(@click="comment") Comment
 </template>
 

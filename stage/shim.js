@@ -41,7 +41,7 @@ export default class Shim {
   getFullTicket() {
     return {
       id       : '01938417',
-      status   : 'open',
+      status   : 'closed',
       title    : 'Problem deploying to digital ocean',
       category : 'app',
       app      : {id:'a', name:'meek-mouse'},
