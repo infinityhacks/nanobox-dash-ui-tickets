@@ -55,12 +55,12 @@ export default {
         profile-pic(:email="comment.email")
         .txt {{ comment.text }}
     .rule.push-left
-    commentor(:email="model.userEmail")
+    commentor(:email="model.userEmail" v-if="ticket.status != 'closed'")
       textarea(v-model="newComment" placeholder="Add a comment")
     .actions.save-section
       .btn.basic.close.lifecycle(v-if="ticket.status != 'closed'" @click="close") Close Ticket
       .btn.basic.open.lifecycle(v-else @click="reOpen") Re-Open Ticket
-      .btn.basic.lifecycle(@click="comment") Comment
+      .btn.basic.lifecycle(v-if="ticket.status != 'closed'" @click="comment") Comment
 </template>
 
 <!--
