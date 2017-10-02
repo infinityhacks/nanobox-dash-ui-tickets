@@ -1,3 +1,8 @@
+☐ Lifecycle on comment button
+☐ Lifecycle on create
+☐ Parse as html
+☐ Select which team members receive notifications
+☐ Set closed styles to look right (blue icon / text) where it should be darker grey
 ☐ Add loading indicators when requesting data
 ✔ Create initial cool looking tickets state if there are no tickets     done(√)
 ✔ Change way current ticket is handled     done(√)

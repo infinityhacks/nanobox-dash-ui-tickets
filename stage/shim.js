@@ -33,7 +33,7 @@ export default class Shim {
     return {
       id:`01938417`,
       title:'Test Ticket',
-      status:'open',
+      status:'closed',
       summary:'Summary of the ticket '
     }
   }

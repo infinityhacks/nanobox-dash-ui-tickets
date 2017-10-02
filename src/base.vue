@@ -24,19 +24,14 @@ export default {
     viewTicket(id) {
       this.clearError()
       this.activeTicketId = id
-      this.callbacks.getTicket(id, (results)=>{
-        if(results.error != null)
-          this.error = results.error
-      })
+      this.callbacks.getTicket(id, this.handleErrors)
     },
     onError(error) {this.error=error},
     clearError()   {this.error=null},
     closeTicket(id) {
       this.clearError()
       this.callbacks.closeTicket(id, (results)=>{
-        if(results.error != null)
-          this.error = results.error
-        else{
+        if( this.handleErrors(results) ){
           this.exitTicket()
           this.state = 'list'
         }
@@ -45,9 +40,7 @@ export default {
     addCommentToTicket(id, comment) {
       this.clearError()
       this.callbacks.addCommentToTicket(id, comment, (results)=>{
-        if(results.error != null)
-          this.error = results.error
-        else
+        if( this.handleErrors(results) )
           this.$refs.ticketView.clearInput()
       })
     },
@@ -61,15 +54,14 @@ export default {
         this.state = 'list';
     },
     exitTicket(){
+      this.clearError()
       this.callbacks.exitTicket()
     },
     reopenTicket(id) {
-      this.callbacks.reopenTicket(id, (results)=> {
-        if(results.error != null)
-          this.error = results.error
-      })
+      this.clearError()
+      this.callbacks.reopenTicket(id, this.handleErrors)
     },
-    chackAndHandleErrors(results){
+    handleErrors(results){
       if(results.error != null){
         this.error = results.error
         return false

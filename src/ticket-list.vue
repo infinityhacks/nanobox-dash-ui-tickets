@@ -45,6 +45,7 @@ export default {
         .txt          {margin-left:8px; }
       }
       &.closed        {background: #99B0BA;
+        .summary,
         .details      {color:#54646E;}
         .status       {color:white; }
         .id           {position: absolute;right:20px; top:10px; color:#54646E;}
