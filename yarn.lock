@@ -2738,9 +2738,10 @@ lcid@^1.0.0:
     invert-kv "^1.0.0"
 
 lexi@tolmark12/nanobox-lexi:
-  version "0.1.24"
-  resolved "https://codeload.github.com/tolmark12/nanobox-lexi/tar.gz/c14c8acee38b9df6f59c79a8b1b7ed6a76c5414f"
+  version "0.1.25"
+  resolved "https://codeload.github.com/tolmark12/nanobox-lexi/tar.gz/5dcc33876ed1f58525cf3a2fcc78f14d45636af3"
   dependencies:
+    blueimp-md5 "^2.10.0"
     lodash "^4.17.4"
     shadow-icons Tolmark12/shadow-icons-js
 

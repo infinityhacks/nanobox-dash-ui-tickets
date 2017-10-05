@@ -1,10 +1,9 @@
 <script>
-import {back, dropdown, saveSection, checkbox} from 'lexi'
+import {back, dropdown, saveSection, checkbox, gravatar} from 'lexi'
 import commentor from './components/commentor'
-import profilePic from './components/profile-pic'
 export default {
   name       : 'ticket-new',
-  components : {back, dropdown, saveSection, commentor, checkbox, profilePic},
+  components : {back, dropdown, saveSection, commentor, checkbox, gravatar},
   props      : ['saveCb', 'model'],
   data() {
     let data = {
@@ -78,7 +77,7 @@ export default {
       .team(v-if="showTeam" )
         .member(v-for="user in model.users" v-bind:class="{'active-user':user.email == model.userEmail}")
           checkbox(v-model='users[user.user]' :id="user.user")
-            profile-pic(:email="user.email" :round="true" :size="30")
+            gravatar(:email="user.email" :round="true" :size="30")
             .name {{ user.user }}
     save-section(@save="onSave" @cancel="$emit('exit')" save-text="Create Ticket" :cycling="creating")
 </template>
@@ -101,7 +100,7 @@ export default {
     .team            {margin-top:5px; display: flex; flex-direction: column;
       .member        {margin:2px 0; display: flex; align-items: center; font-size: 16px; font-weight: 600; font-style: italic;
         &.active-user{opacity: 0.4; pointer-events: none; order:-1; }
-        .profile-pic {margin-left:10px;   }
+        .gravatar    {margin-left:10px;   }
       }
     }
   }

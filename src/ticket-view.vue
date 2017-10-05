@@ -1,14 +1,13 @@
 <script>
-import {back, lifecycler}     from 'lexi'
-import profilePic             from './components/profile-pic'
-import commentor              from './components/commentor'
-import timeAgo                from 'javascript-time-ago'
+import {back, lifecycler, gravatar} from 'lexi'
+import commentor                    from './components/commentor'
+import timeAgo                      from 'javascript-time-ago'
 timeAgo.locale(require('javascript-time-ago/locales/en'))
 
 export default {
   name: 'ticket-view',
   props:['ticket', 'model'],
-  components:{back, lifecycler, profilePic, commentor},
+  components:{back, lifecycler, gravatar, commentor},
   data() {return{
     newComment : "",
     cycler     : ""
@@ -64,7 +63,7 @@ export default {
         .user {{ comment.user }}
         .time {{ getTime(comment.time) }}
       .body
-        profile-pic(:email="comment.email")
+        gravatar(:email="comment.email")
         .txt(v-html="comment.text")
     .rule.push-left
     commentor(:email="model.userEmail" v-if="ticket.status != 'closed'")
