@@ -1,14 +1,15 @@
-☐ Lifecycle on comment button
+✔ Lifecycle on comment button     done(√)
 ✔ Lifecycle on create     done(√)
 ✔ Parse as html     done(√)
 ✔ If there are a lot of tickets, move the creation button above the tickets     done(√)
 ☐ Select which team members receive notifications
-☐ Set closed styles to look right (blue icon / text) where it should be darker grey
-☐ Add loading indicators when requesting data
+✔ Set closed styles to look right (blue icon / text) where it should be darker grey     done(√)
+✔ Add loading indicators when requesting data     done(√)
 ✔ Create initial cool looking tickets state if there are no tickets     done(√)
 ✔ Change way current ticket is handled     done(√)
 ✔ Allow initial ticket selected     done(√)
-☐ Handle closed open status
+✔ Handle closed open status     done(√)
+☐ Don't hide tickets, lead into upgrade
 ☐ Unread messages?
 ☐ Total messages?
 ☐ Pagination

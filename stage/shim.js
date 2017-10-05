@@ -6,7 +6,8 @@ export default class Shim {
       userEmail    : 'contact@parslee.com',
       tickets      : this.getTicketList(),
       activeTicket : null,
-      apps         : this.getAppList()
+      apps         : this.getAppList(),
+      users        : this.getUsers()
     }
     this.activeTicket = this.getFullTicket()
   }
@@ -88,13 +89,17 @@ export default class Shim {
     return comments[randomNum]
   }
 
-  getRandomPerson(){
-    let people = [
+  getUsers() {
+    return [
       {user : "johnny-appleseed", email:"contact@parslee.com", isAdmin:true},
       {user : "babak-pavlan",     email:"jackson@gmail.com"},
       {user : "keezubun",         email:"michael101@gmail.com"},
       {user : "sanderson",        email:"scott@nanobox.io", isAdmin:true},
     ]
+  }
+
+  getRandomPerson(){
+    let people = this.getUsers()
     let randomNum = Math.floor(Math.random() * people.length)
     return people[randomNum]
   }

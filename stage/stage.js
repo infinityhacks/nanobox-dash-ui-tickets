@@ -26,6 +26,8 @@ let callbacks = {
   // Create a new ticket
   createTicket(info, cb) {
     setTimeout( ()=> {
+      console.log( "creating a ticked with this info :" )
+      console.log( info )
       shim.addTicketToList()
       cb({})
       // cb({error:"hmm, some error"})

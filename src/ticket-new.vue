@@ -1,18 +1,26 @@
 <script>
-import {back, dropdown, saveSection} from 'lexi'
+import {back, dropdown, saveSection, checkbox} from 'lexi'
 import commentor from './components/commentor'
+import profilePic from './components/profile-pic'
 export default {
   name       : 'ticket-new',
-  components : {back, dropdown, saveSection, commentor},
+  components : {back, dropdown, saveSection, commentor, checkbox, profilePic},
   props      : ['saveCb', 'model'],
   data() {
-    return{
-      category : "general",
-      appId    : "none",
-      subject  : "",
-      message  : "",
-      creating : false
+    let data = {
+      category   : "general",
+      appId      : "none",
+      subject    : "",
+      message    : "",
+      creating   : false,
+      sendEmails : false,
+      showTeam   : false,
+      users      : {}
     }
+    for ( let key in this.model.users ) {
+      data.users[this.model.users[key].user] = this.model.users[key].email == this.model.userEmail
+    }
+    return data
   },
   methods:{
     onSave() {
@@ -26,11 +34,18 @@ export default {
       })
     },
     getData() {
+      let selectedUsers = []
+      for ( let key in this.users ) {
+        if( this.users[key] )
+          selectedUsers.push(key)
+      }
       return {
-        category : this.category,
-        appId    : this.appId,
-        subject  : this.subject,
-        message  : this.message
+        category     : this.category,
+        appId        : this.appId,
+        subject      : this.subject,
+        message      : this.message,
+        users        : selectedUsers,
+        doSendEmails : this.sendEmails
       }
     }
   }
@@ -55,6 +70,16 @@ export default {
       input(v-model="subject" placeholder="Subject")
     commentor(:email="model.userEmail")
       textarea(v-model="message" placeholder="Ticket Details")
+    .push-left.border
+      checkbox( v-model='sendEmails')
+        .label email ticket updates
+    .push-left.border
+      .add(@click="showTeam=!showTeam" v-if="!showTeam") Add Team Members to Ticket
+      .team(v-if="showTeam" )
+        .member(v-for="user in model.users" v-bind:class="{'active-user':user.email == model.userEmail}")
+          checkbox(v-model='users[user.user]' :id="user.user")
+            profile-pic(:email="user.email" :round="true" :size="30")
+            .name {{ user.user }}
     save-section(@save="onSave" @cancel="$emit('exit')" save-text="Create Ticket" :cycling="creating")
 </template>
 
@@ -63,11 +88,21 @@ export default {
 -->
 
 <style lang="scss" scoped>
-  .ticket-new {display: flex; flex-direction: column;
-    > *       {margin:10px 0; }
-    .row      {display: flex;
-      > *     {margin-right:15px; }
+  .ticket-new        {display: flex; flex-direction: column;
+    > *              {margin:10px 0; }
+    .row             {display: flex;
+      > *            {margin-right:15px; }
     }
-    input     {width: 100%; }
+    input            {width: 100%; }
+    .border          {border-top:solid 1px #DFDADA; padding-top:10px; margin-bottom:0; }
+    .add             {font-size: 16px; font-weight: 600; font-style: italic; color: #00a2ed; padding-left: 6px; cursor: pointer; display: inline;
+      &:hover        {color:#0077D7}
+    }
+    .team            {margin-top:5px; display: flex; flex-direction: column;
+      .member        {margin:2px 0; display: flex; align-items: center; font-size: 16px; font-weight: 600; font-style: italic;
+        &.active-user{opacity: 0.4; pointer-events: none; order:-1; }
+        .profile-pic {margin-left:10px;   }
+      }
+    }
   }
 </style>
