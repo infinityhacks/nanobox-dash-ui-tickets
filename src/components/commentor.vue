@@ -1,9 +1,9 @@
 <script>
-import profilePic from './profile-pic'
+import {gravatar} from 'lexi'
 export default {
   name       : 'commentor',
   props      : ['email'],
-  components : {profilePic}
+  components : {gravatar}
 }
 </script>
 
@@ -13,7 +13,7 @@ export default {
 
 <template lang="pug">
   .commentor
-    profile-pic(:email="email")
+    gravatar(:email="email")
     slot
 </template>
 
