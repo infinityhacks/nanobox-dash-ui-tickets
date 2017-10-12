@@ -2738,8 +2738,13 @@ lcid@^1.0.0:
     invert-kv "^1.0.0"
 
 lexi@tolmark12/nanobox-lexi:
+<<<<<<< HEAD
   version "0.1.30"
   resolved "https://codeload.github.com/tolmark12/nanobox-lexi/tar.gz/8b9d63e8e0c89ec0497e1cb09e5c4336c3aed8e4"
+=======
+  version "0.1.25"
+  resolved "https://codeload.github.com/tolmark12/nanobox-lexi/tar.gz/5dcc33876ed1f58525cf3a2fcc78f14d45636af3"
+>>>>>>> 6687fc70cd065229d53c3755548d06880a7f88ca
   dependencies:
     blueimp-md5 "^2.10.0"
     lodash "^4.17.4"
