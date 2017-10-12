@@ -1,6 +1,6 @@
 {
   "name": "tickets",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Nanobox UI component for creating tickets",
   "author": "Mark Parson <mark@nanobox.io>",
   "private": true,

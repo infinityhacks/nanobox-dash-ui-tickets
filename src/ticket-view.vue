@@ -1,5 +1,5 @@
 <script>
-import {back, lifecycler, gravatar} from 'lexi'
+import {x, lifecycler, gravatar} from 'lexi'
 import commentor                    from './components/commentor'
 import timeAgo                      from 'javascript-time-ago'
 timeAgo.locale(require('javascript-time-ago/locales/en'))
@@ -7,7 +7,7 @@ timeAgo.locale(require('javascript-time-ago/locales/en'))
 export default {
   name: 'ticket-view',
   props:['ticket', 'model'],
-  components:{back, lifecycler, gravatar, commentor},
+  components:{x, lifecycler, gravatar, commentor},
   data() {return{
     newComment : "",
     cycler     : ""
@@ -53,7 +53,7 @@ export default {
 
 <template lang="pug">
   .ticket-view
-    back(@back="$emit('exit')")
+    x.stretch(@click="$emit('exit')") Back
     .id {{ ticket.id }}
     .header.push-left
       .txt {{ ticket.title }}

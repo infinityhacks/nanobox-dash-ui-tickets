@@ -92,7 +92,7 @@ export default class Shim {
   getUsers() {
     return [
       {user : "johnny-appleseed", email:"contact@parslee.com", isAdmin:true},
-      {user : "babak-pavlan",     email:"jackson@gmail.com"},
+      {user : "xanthisefort",     email:"jackson@gmail.com"},
       {user : "keezubun",         email:"michael101@gmail.com"},
       {user : "sanderson",        email:"scott@nanobox.io", isAdmin:true},
     ]

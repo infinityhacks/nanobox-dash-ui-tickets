@@ -1,9 +1,9 @@
 <script>
-import {back, dropdown, saveSection, checkbox, gravatar} from 'lexi'
+import {x, dropdown, saveSection, checkbox, gravatar} from 'lexi'
 import commentor from './components/commentor'
 export default {
   name       : 'ticket-new',
-  components : {back, dropdown, saveSection, commentor, checkbox, gravatar},
+  components : {x, dropdown, saveSection, commentor, checkbox, gravatar},
   props      : ['saveCb', 'model'],
   data() {
     let data = {
@@ -57,7 +57,7 @@ export default {
 
 <template lang="pug">
   .ticket-new
-    back(@back="$emit('exit')")
+    x.stretch(@click="$emit('exit')") Back
     .row.pad-left
       dropdown(v-model="category")
         .option(value="general") General Support
