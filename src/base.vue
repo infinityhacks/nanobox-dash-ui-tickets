@@ -38,10 +38,8 @@ export default {
       })
     },
     addCommentToTicket(id, comment) {
-      console.log( "....." )
       this.clearError()
       this.callbacks.addCommentToTicket(id, comment, (results)=>{
-        console.log( "hmmmm" )
         if( this.handleErrors(results) )
           this.$refs.ticketView.clearInput()
       })
@@ -51,7 +49,7 @@ export default {
       this.clearError()
       if(this.model.tickets.length < 1)
         this.state = 'no-tickets'
-      else if(this.model.activeTicket != null)
+      else if(this.model.activeTicket != null )
         this.state = 'ticket.view'
       else
         this.state = 'list';
@@ -85,7 +83,11 @@ export default {
       this.setListState()
     },
     // Watch the ticketsAr in case something gets added
-    ticketsAr(){this.setListState()}
+    ticketsAr(){
+      // If we're not creating a new ticket, update the view state (most likely to 'list')
+      if(this.state != 'ticket.new')
+        this.setListState()
+    }
   },
   // On mount, set the initial list state
   mounted(){ this.setListState() },

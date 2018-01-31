@@ -12,6 +12,10 @@ export default class Shim {
     this.activeTicket = this.getFullTicket()
   }
 
+  resetTickets() {
+    this.data.tickets = this.getTicketList()
+  }
+
   addTicketToList(){
     this.data.tickets.push( this.getAbrevTicket() )
   }
